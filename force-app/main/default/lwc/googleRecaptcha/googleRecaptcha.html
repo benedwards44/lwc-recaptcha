@@ -1,0 +1,21 @@
+<template>
+    <c-error-message errors={errors}></c-error-message>
+    <div class="recaptchaCheckbox slds-align_absolute-center"></div>
+    <lightning-button 
+        onclick={handleSubmit} 
+        variant="brand"
+        disabled={buttonDisabled}
+        label={submitButtonLabel}   
+        style="display: grid; width: 100%"
+        class="slds-m-top_medium"
+        if:false={isLoading}
+    >
+    </lightning-button>
+    <lightning-spinner 
+        alternative-text="Verifying..." 
+        size="small" 
+        variant="brand"
+        if:true={isLoading}
+    >
+    </lightning-spinner>
+</template>
