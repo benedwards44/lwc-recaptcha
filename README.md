@@ -1,6 +1,8 @@
-# lwc-recaptcha
+# LWC Google reCAPTCHA 2
 
-Simple implementation of reCAPTCHA 2 for use within Experience Cloud and Lightning Web Components.
+Simple implementation of reCAPTCHA 2 for use within Experience Cloud and Lightning Web Components. It's a child component which can be embedded into forms to enable reCAPTCHA validation before submission of a form.
+
+It will also disable submit button until verified, and then also runs server-side validation as an extra layer of security.
 
 ## Setup
 
@@ -48,6 +50,19 @@ Builder -> Settings -> Advanced -> Edit Head Markup -> Enter code as follows:
 <script src='https://www.google.com/recaptcha/enterprise.js?render=explicit&onload=onloadCallback' async defer></script>
 ```
 
+**Note**: If not using Enterprise keys, you can amend the code accordingly:
+Change:
+`<script src='https://www.google.com/recaptcha/enterprise.js?render=explicit&onload=onloadCallback' async defer></script>`
+TO
+`<script src='https://www.google.com/recaptcha/api.js?render=explicit&onload=onloadCallback' async defer></script>`
+
+AND
+`grecaptcha.enterprise.render`
+TO
+`grecaptcha.render`
+
+Also, the action of `'REGISTER'` can be used to indicate which action the user is taking, or what form you are validating/submitting. Eg. LOGIN, REGISTER etc.
+
 
 ### Experience Cloud Security Settings
 
@@ -71,15 +86,7 @@ Builder -> Settings -> General -> Configure access for guest or unauthenticated 
 
 The reCAPTCHA requires Enterprise API keys and the target community URL to be whitelisted in the Google reCAPTCHA Admin Console. However, non-Enterprise is supported by amending the HEAD markup above:
 
-Change:
-`<script src='https://www.google.com/recaptcha/enterprise.js?render=explicit&onload=onloadCallback' async defer></script>`
-TO
-`<script src='https://www.google.com/recaptcha/api.js?render=explicit&onload=onloadCallback' async defer></script>`\
 
-AND
-`grecaptcha.enterprise.render(`
-TO
-`grecaptcha.render(`
 
 
 To enter the keys into Salesforce:
